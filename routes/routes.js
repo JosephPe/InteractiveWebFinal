@@ -16,11 +16,13 @@ exports.index = (req, res) => {
         title: 'title'
     })
 }
+
 exports.users = (req, res) => {
     res.render('users', {
         title: 'users'
     })
 }
+
 exports.create = (req, res) => {
     res.render('create', {
         title: 'create account'
