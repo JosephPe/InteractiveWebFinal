@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', routes.index)
 app.get('/users', routes.users)
-app.get('/create', routes.create)
+app.get('/signup', routes.signup)
+app.get('/login', routes.login)
 
 app.listen(3000)

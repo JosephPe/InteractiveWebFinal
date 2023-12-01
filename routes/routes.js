@@ -23,8 +23,14 @@ exports.users = (req, res) => {
     })
 }
 
-exports.create = (req, res) => {
-    res.render('create', {
+exports.signup = (req, res) => {
+    res.render('signup', {
         title: 'create account'
+    })
+}
+
+exports.login = (req, res) => {
+    res.render('login', {
+        title: 'login'
     })
 }
