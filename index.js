@@ -1,6 +1,7 @@
 const exp = require('constants')
 const express = require('express'),
     pug = require('pug'),
+    path = require('path'),
     routes = require('./routes/routes.js')
 
 const app = express()
