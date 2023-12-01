@@ -21,8 +21,8 @@ exports.users = (req, res) => {
         title: 'users'
     })
 }
-exports.createAccount = (req, res) => {
-    res.render(createAccount, {
+exports.create = (req, res) => {
+    res.render('create', {
         title: 'create account'
     })
 }
