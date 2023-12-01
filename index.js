@@ -11,5 +11,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', routes.index)
+app.get('/users', routes.users)
+app.get('createaccount', routes.createAccount)
 
 app.listen(3000)
