@@ -62,36 +62,27 @@ db.on('error', console.error.bind(console, 'DB connection error'));
 db.once('open', callback => {});
 
 const userSchema = new mongoose.Schema({
-  age: {
+age: {
     type: Number,
     required: true
-  },
-  email: {
+},
+email: {
     type: String,
     required: true,
     unique: true
-  },
-  username: {
+},
+username: {
     type: String,
     required: true,
     unique: true
-  },
-  password: {
+},
+password: {
     type: String,
     required: true
-  }
+}
 });
 
 const User = mongoose.model('User', userSchema);
-
-
-let userSchema = mongoose.Schema({
-    username: String,
-    password: String,
-    email: String,
-    age: Number
-});
-let User = mongoose.model('User_Data', userSchema)
 
 //views
 exports.index = (req, res) => {
@@ -107,13 +98,7 @@ exports.index = (req, res) => {
         .catch((err) => {
             return console.error(err);
         })
-}    
-=======
-exports.index = (req, res) => {
-    res.render('index', {
-        title: 'title'
-    });
-};
+} 
 
 
 exports.users = (req, res) => {
