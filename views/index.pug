@@ -1,4 +1,23 @@
 extends layout
 
 block content
-    h3 index page
+    h3 What type of genres do you like? (Example Question)
+
+    table(class='myTable' id="Table")
+        tr 
+            th Question 
+            th
+            th T/F
+            th 
+            th Based on other users.
+        each question in questions    
+            tr
+                td #{question}
+                td 
+                td 
+                    p
+                        input(type='submit' value ="True")
+                td 
+                    p
+                        input(type='submit' value ="False")
+                td

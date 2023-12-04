@@ -3,7 +3,6 @@ const express = require('express'),
     pug = require('pug'),
     path = require('path'),
     bodyParser = require('body-parser'),
-
     routes = require('./routes/routes.js')
 
 const urlencodedParser = bodyParser.urlencoded({extended: true});
