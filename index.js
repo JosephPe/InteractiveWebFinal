@@ -6,7 +6,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     routes = require('./routes/routes.js')
 
-const urlencodedParser = bodyParser.urlencoded({extended: true});
+const urlEncodedParser = bodyParser.urlencoded({extended: true});
 
 const app = express()
 
