@@ -1,64 +1,6 @@
 .hide {
     display: none;
 }
-/* Reset some default styles for consistency */
-body, h1, p {
-    margin: 0;
-    padding: 0;
-}
-
-/* Set a background color for the body */
-body {
-    background-color: #f8f8f8;
-    font-family: Arial, sans-serif;
-}
-
-/* Style the container for the login/signup form someone will have to go in an fix this to how they want the container for login to look*/
-.container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Style form input fields on what the users information will be styled */
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-}
-
-/* Style the validation messages */
-.hide {
-    display: none;
-    color: red;
-}
-
-/* Style the submit button */
-button {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Style the reply message */
-#reply {
-    color: red;
-    margin-top: 10px;
-}
-
-/* Center the form on the page */
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 .show {
     display: block;
 }
