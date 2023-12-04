@@ -4,7 +4,7 @@
 /* Reset some default styles for consistency */
 body, h1, p {
     margin: 0;
-    padding: 0;
+    padding: 25px;
 }
 
 /* Set a background color for the body */
@@ -24,7 +24,7 @@ body {
 
 /* Style form input fields on what the users information will be styled */
 input {
-    width: 100%;
+    width: auto;
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;

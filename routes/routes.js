@@ -62,6 +62,11 @@ db.on('error', console.error.bind(console, 'DB connection error'));
 db.once('open', callback => {});
 
 const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
 age: {
     type: Number,
     required: true
@@ -71,14 +76,24 @@ email: {
     required: true,
     unique: true
 },
-username: {
-    type: String,
-    required: true,
-    unique: true
-},
 password: {
     type: String,
     required: true
+},
+answer1:
+{
+    type: Number,
+    required: false
+},
+answer2:
+{
+    type: Number,
+    required: false
+},
+answer3:
+{
+    type: Number,
+    required: false
 }
 });
 
@@ -100,6 +115,20 @@ exports.index = (req, res) => {
         })
 } 
 
+exports.postAnswers = (req, res) => {
+    const answer = req.body.answer;
+    User.findByIdAndUpdate(email, {answer: answer}, (err, user) => {
+        console.log(email);
+        console.log(answer);
+        console.log(user);
+
+        if (err) {
+            res.status(500).send('Error updating user data');
+        } else {
+            res.status(200).send('User data updated');
+        }
+    })
+}
 
 exports.users = (req, res) => {
     res.render('users', {
