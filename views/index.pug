@@ -13,7 +13,7 @@ block content
                     h2= question.question
                     ul
                         each answer in question.answers
-                                label
-                                input(type='radio', name='answerOption', value=answer, onchange=`handleAnswer('${answer}')`)
-                                | #{answer}
+                            label
+                            input(type='radio', name='answerOption', value=answer, onchange=`handleAnswer('${answer}')`)
+                            | #{answer}
             input(type='button' value='Submit' )
