@@ -1,3 +1,5 @@
+const age = document.getElementById("age")
+const ageReply = document.getElementById("ageReply")
 const email = document.getElementById("email")
 const username = document.getElementById("username")
 const password = document.getElementById("password")
@@ -9,6 +11,8 @@ const passwordReply = document.getElementById("passwordReply")
 const passwordConfirmReply = document.getElementById("passwordConfirmReply")
 const reply = document.getElementById("reply")
 
+
+let validAgeInput = false
 let validEmailInput = false
 let validUsernameInput = false
 let validPasswordInput = false
@@ -20,16 +24,31 @@ let notInDatabase = true
 
 
 const validate = () => {
+    validateAgeInput()
     validateEmailInput()
     validateUsernameInput()
     validatePasswordInput()
     validatePasswordConfirmInput()
 
-    if(validEmailInput && validUsernameInput && validPasswordInput && validPasswordConfirmInput){
+    if(validAgeInput && validEmailInput && validUsernameInput && validPasswordInput && validPasswordConfirmInput){
         return true
     }else{
         reply.classList.remove('hide')
         return false
+    }
+}
+
+const validateAgeInput = () => {
+    let ageInput = age.value
+    let ageForm = /^\d+$/.test(ageInput)
+    if(ageForm){
+        validAgeInput = true
+        ageReply.classList.add('hide')
+        console.log("true")
+    }else{
+        validAgeInput = false
+        ageReply.classList.remove('hide')
+        console.log("false")
     }
 }
 
@@ -43,10 +62,12 @@ const validateEmailInput = () => {
         // if it is it throws the error (keeps it false and outputs some
         // reply text)
         validEmailInput = true
+
         //add email to database
         emailReply.classList.add('hide')
         console.log("true")
     }else{
+        validEmailInput = false
         emailReply.classList.remove('hide')
         console.log("false")
     }
@@ -57,16 +78,17 @@ const validateUsernameInput = () => {
     let usernameForm = /^[a-zA-Z0-9-_]{5,}$/.test(usernameInput)
     if(usernameForm){
         usernameRegexReply.classList.add('hide')
-        //some database stuff to see if username already exists
         if(notInDatabase){
             validUsernameInput = true
             usernameAlreadyExistsReply.classList.add('hide')
             console.log("true")
         }else{
+            validUsernameInput = false
             usernameAlreadyExistsReply.classList.remove('hide')
             console.log("false/alreadyindatabase")
         }
     }else{
+        validUsernameInput = false
         usernameRegexReply.classList.remove('hide')
         console.log("false")
     }
@@ -80,6 +102,7 @@ const validatePasswordInput = () => {
         passwordReply.classList.add('hide')
         console.log("true")
     }else{
+        validPasswordInput = false
         passwordReply.classList.remove('hide')
         console.log('false')
     }
@@ -93,11 +116,13 @@ const validatePasswordConfirmInput = () => {
         passwordConfirmReply.classList.add('hide')
         console.log("true")
     }else{
+        validPasswordConfirmInput = false
         passwordConfirmReply.classList.remove('hide')
         console.log("false")
     }
 }
 
+age.addEventListener('input', validateAgeInput)
 email.addEventListener('input', validateEmailInput)
 username.addEventListener('input', validateUsernameInput)
 password.addEventListener('input', validatePasswordInput)

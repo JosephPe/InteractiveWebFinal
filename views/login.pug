@@ -1,53 +1,17 @@
 extends layout
 
 block content
-    h3 log in page
+    h3 log in
 
-//- <!DOCTYPE html>
-//- <head>
-//-     <link rel="stylesheet" href="styles.css">
-//-     <title>Galactic Archives Log-In</title>
-//- </head>
-//- <body class="body">
-//-     <div class="navbar">
-//-         <span>Star Wars: Galactic Archives</span>
-//-         <input>
-//-         <button>Search</button>
-//-         <a href="login.html">
-//-             <img src="images/pfp.png"/>
-//-         </a>
-//-     </div>
-//-     <div class="sidebar">
-//-         <a href="#">
-//-             <img src="images/skywalker.png" style="width: 50px"/>
-//-             People
-//-         </a>
-//-         <a href="#">
-//-             <img src="images/Death-Star.png" style="width: 50px"/>
-//-             Planets
-//-         </a>
-//-         <a href="#">
-//-             <img src="images/chewy.png" style="width: 50px"/>
-//-             Animals
-//-         </a>
-//-         <a href="#">
-//-             <img src="images/empire.png" style="width: 50px"/>
-//-             Factions
-//-         </a>
-//-     </div>
-//-     <div class="text" style="margin-left: 150px;">
-//-         <h1>Log-In</h1>
-//-         <form action="home.html" onsubmit="return validate()" method="post">
-//-             <p>Email/Username:</p>
-//-             <input id="emailUsername" onblur="validateEmailUsernameInput()">
-//-             <p>Password:</p>
-//-             <input id="password" onblur="validatePasswordInput()">
-//-             <div>
-//-                 <input type="submit" value="Log-In">
-//-             </div>
-//-             <p class="hide" id="reply">Invalid email/username or password.</p>
-//-         </form>
-//-         <p></p>
-//-         <a href="signup.html">New to website? Sign up!</a>
-//-     </body>
-//-     <script src="login.js"></script>
+    form(id="login" action="/login" onsubmit="return validate()" method="post")
+        p Email: 
+            input(id="email" name="email" type="text")
+        p Password: 
+            input(id="password" name="password" type="password")
+        p 
+            input(type="submit" value="Log In")
+        p.hide(id="reply") Invalid email/username or password.
+        p 
+        a(href="signup") New? Sign up!
+    
+    script(src="login.js")
