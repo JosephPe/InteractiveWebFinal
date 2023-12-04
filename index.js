@@ -18,7 +18,6 @@ app.get('/', routes.index)
 app.get('/users', routes.users)
 app.get('/signup', routes.signup)
 app.get('/login', routes.login)
-app.post('/submitAnswers', urlEncodedParser, routes.postAnswers)
 app.post('/signup', urlEncodedParser, routes.postSignup)
 app.post('/login', urlEncodedParser, routes.postLogin)
 

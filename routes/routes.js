@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 
 const connectionString = 'mongodb://127.0.0.1:27017/';
 mongoose.connect(connectionString, {});
@@ -62,11 +63,6 @@ db.on('error', console.error.bind(console, 'DB connection error'));
 db.once('open', callback => {});
 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
 age: {
     type: Number,
     required: true
@@ -76,24 +72,14 @@ email: {
     required: true,
     unique: true
 },
+username: {
+    type: String,
+    required: true,
+    unique: true
+},
 password: {
     type: String,
     required: true
-},
-answer1:
-{
-    type: Number,
-    required: false
-},
-answer2:
-{
-    type: Number,
-    required: false
-},
-answer3:
-{
-    type: Number,
-    required: false
 }
 });
 
@@ -102,33 +88,23 @@ const User = mongoose.model('User', userSchema);
 //views
 exports.index = (req, res) => {
     
-    User.find({})
-    .then(() => {       
-            res.render('index', {
-                title: 'Welcome! Lets have a quick test.',
-                questions: questions
-            });
-        //res.render
-        })
-        .catch((err) => {
-            return console.error(err);
-        })
+    // User.find({})
+    // .then(() => {       
+    //         res.render('index', {
+    //             title: 'Welcome! Lets have a quick test.',
+    //             questions: questions
+    //         });
+    //     //res.render
+    //     })
+    //     .catch((err) => {
+    //         return console.error(err);
+    //     })
+
+    res.render("home", {
+        title: "Answers from other users!"
+    });
 } 
 
-exports.postAnswers = (req, res) => {
-    const answer = req.body.answer;
-    User.findByIdAndUpdate(email, {answer: answer}, (err, user) => {
-        console.log(email);
-        console.log(answer);
-        console.log(user);
-
-        if (err) {
-            res.status(500).send('Error updating user data');
-        } else {
-            res.status(200).send('User data updated');
-        }
-    })
-}
 
 exports.users = (req, res) => {
     res.render('users', {
@@ -150,7 +126,12 @@ exports.login = (req, res) => {
 
 exports.postSignup = async (req, res) => {
     console.log('POST /signup received');
-    let { age, email, username, password } = req.body;
+   
+
+    let { age, email, username } = req.body;
+    let pass = req.body.password;
+
+
     try {
         let existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -160,6 +141,12 @@ exports.postSignup = async (req, res) => {
         if (existingUsername) {
             return res.status(400).json({ error: 'username already exists' });
         }
+
+        var salt = bcrypt.genSaltSync(10);
+        var password = bcrypt.hashSync(pass, salt);
+        
+
+
         let newUser = new User({ age, email, username, password });
         await newUser.save();
         console.log('User created successfully');
@@ -172,13 +159,17 @@ exports.postSignup = async (req, res) => {
 
 exports.postLogin = async (req, res) => {
     console.log('POST /login received');
-    let { email, password } = req.body;
+    let email = req.body.email;
+    let pass = req.body.password;
+    
     try {
         let user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
-        if (password === user.password) {
+        var hash = user.password
+
+        if (bcrypt.compareSync(pass, hash)) {
             return res.redirect('/');
         } else {
             return res.status(401).json({ error: 'Invalid email or password' });

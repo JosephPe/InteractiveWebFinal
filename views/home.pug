@@ -1,0 +1,44 @@
+extends layout 
+
+block content 
+
+ canvas(id="barGraph", width="400", height="300")
+    script.
+      // Data for the bar graph
+      const data = {
+          labels: ['A', 'B', 'C', 'D'],
+          values: [50, 80, 120, 200]
+      };
+
+      // Get the canvas element
+      const canvas = document.getElementById('barGraph');
+      const ctx = canvas.getContext('2d');
+
+      // Bar width and spacing
+      const barWidth = 50;
+      const barSpacing = 20;
+
+      // Set the starting position for the first bar
+      let x = 50;
+
+      // Loop through the data and draw the bars
+      for (let i = 0; i < data.labels.length; i++) {
+          // Calculate the bar height based on the data value
+          const barHeight = data.values[i];
+
+          // Draw the bar
+          ctx.fillStyle = '#3399FF'; // Bar color
+          ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+          // Draw the label below the bar
+          ctx.fillStyle = '#000'; // Label color
+          ctx.fillText(data.labels[i], x + barWidth / 2 - 20, canvas.height - 5);
+
+          // Move the starting position for the next bar
+          x += barWidth + barSpacing;
+      }
+         // Add a label on the left side
+      ctx.fillStyle = '#000';
+      ctx.textAlign = 'right';
+      ctx.fillText('Amount', 50, canvas.height / 2);
+      //^^^^^^^^^^^^^This code was writen by ChatGPT. Juan can explain how it works though. ^^^^^^^^^^^^^^^^^^
