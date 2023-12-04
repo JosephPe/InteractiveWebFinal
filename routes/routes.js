@@ -37,23 +37,6 @@ function handleAnswer(questionId, selectedOption) {
     //gather percentage
     optionCounts[selectedOption]++;
     const totalResponses = optionCounts.optionA + optionCounts.optionB + optionCounts.optionC + optionCounts.optionD;
-
-    const percentageA = (optionCounts.optionA / totalResponses) * 100;
-    
-    const percentageB = (optionCounts.optionB / totalResponses) * 100;
-    
-    const percentageC = (optionCounts.optionC / totalResponses) * 100;
-    
-    const percentageD = (optionCounts.optionD / totalResponses) * 100;
-
-    //Display percentage
-    document.getElementById(`optionAPercentage_${questionId}`).innerText = `Option A: ${percentageA}%`;
-    
-    document.getElementById(`optionBPercentage_${questionId}`).innerText = `Option B: ${percentageB}%`;
-    
-    document.getElementById(`optionCPercentage_${questionId}`).innerText = `Option C: ${percentageC}%`;
-    
-    document.getElementById(`optionDPercentage_${questionId}`).innerText = `Option D: ${percentageD}%`;
 }
 
 

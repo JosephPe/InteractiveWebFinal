@@ -8,12 +8,12 @@ block content
             //This here, For each question in questions, show the question
             //but for each answer in the questions answers, create a radio
             //button of the answer option, with the answer, and show the answer
-            form(action='/submitAnswers/', method='post')
+            form(id='form' method='post' action='/api/submitAnswers/')
                 each question in questions
                     h2= question.question
                     ul
                         each answer in question.answers
                             label
-                            input(type='radio', name='answerOption', value=answer, onchange=`handleAnswer('${answer}')`)
+                            input(type='checkbox', name='answerOption', value=answer, onchange=`handleAnswer('${answer}')`)
                             | #{answer}
             input(type='button' value='Submit' )
