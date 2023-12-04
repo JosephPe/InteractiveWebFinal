@@ -1,3 +1,15 @@
+
+const exp = require('constants')
+const express = require('express'),
+    pug = require('pug'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    routes = require('./routes/routes.js')
+
+const urlencodedParser = bodyParser.urlencoded({extended: true});
+
+const app = express()
+
 const express = require('express');
 const path = require('path');
 const routes = require('./routes/routes.js');
@@ -5,6 +17,7 @@ const bodyParser = require('body-parser');
 
 const urlEncodedParser = bodyParser.urlencoded({ extended: true });
 const app = express();
+
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

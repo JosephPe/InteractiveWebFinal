@@ -4,7 +4,58 @@ const mongoose = require('mongoose');
 const connectionString = 'mongodb://127.0.0.1:27017/';
 mongoose.connect(connectionString, {});
 
-const db = mongoose.connection;
+
+const db = mongoose.connection
+//questions and answers, based on the exports. stuff
+const questions = [
+    {
+        question: "Whats 9+10???",
+        answers: ["19", "21", "You stupid", "No I not"]
+    },
+    {
+        question: "Example 2",
+        answers: ["ayup", "mhm", "This is not even a question", "Sure"]
+    },
+    {
+        question: "9+10???",
+        answers: ["This again?", "Tf", "Oh nahh", "Hole up"]
+    },
+    {
+        question: "Can you smellllll",
+        answers: ["What", "The rock", "Is", "Cooking"]
+    },
+]
+//increment which options are clicked
+let optionCounts = {
+    optionA: 0,
+    optionB: 0,
+    optionC: 0,
+    optionD: 0,
+};
+
+function handleAnswer(questionId, selectedOption) {
+    //gather percentage
+    optionCounts[selectedOption]++;
+    const totalResponses = optionCounts.optionA + optionCounts.optionB + optionCounts.optionC + optionCounts.optionD;
+
+    const percentageA = (optionCounts.optionA / totalResponses) * 100;
+    
+    const percentageB = (optionCounts.optionB / totalResponses) * 100;
+    
+    const percentageC = (optionCounts.optionC / totalResponses) * 100;
+    
+    const percentageD = (optionCounts.optionD / totalResponses) * 100;
+
+    //Display percentage
+    document.getElementById(`optionAPercentage_${questionId}`).innerText = `Option A: ${percentageA}%`;
+    
+    document.getElementById(`optionBPercentage_${questionId}`).innerText = `Option B: ${percentageB}%`;
+    
+    document.getElementById(`optionCPercentage_${questionId}`).innerText = `Option C: ${percentageC}%`;
+    
+    document.getElementById(`optionDPercentage_${questionId}`).innerText = `Option D: ${percentageD}%`;
+}
+
 
 db.on('error', console.error.bind(console, 'DB connection error'));
 
@@ -33,11 +84,37 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+
+let userSchema = mongoose.Schema({
+    username: String,
+    password: String,
+    email: String,
+    age: Number
+});
+let User = mongoose.model('User_Data', userSchema)
+
+//views
+exports.index = (req, res) => {
+    
+    User.find({})
+    .then(() => {       
+            res.render('index', {
+                title: 'Welcome! Lets have a quick test.',
+                questions: questions
+            });
+        //res.render
+        })
+        .catch((err) => {
+            return console.error(err);
+        })
+}    
+=======
 exports.index = (req, res) => {
     res.render('index', {
         title: 'title'
     });
 };
+
 
 exports.users = (req, res) => {
     res.render('users', {

@@ -1,4 +1,21 @@
 extends layout
 
 block content
-    h3 index page
+    h3 Answer some questions lil bro
+
+    table(class='myTable' id="Table")
+        tr 
+            th Question 
+            th
+            th T/F
+            th 
+            th Based on other users.
+            //This here, For each question in questions, show the question
+            //but for each answer in the questions answers, create a radio
+            //button of the answer option, with the answer, and show the answer
+        each question in questions    
+            h2= question.question
+                each answer in question.answers
+                    label
+                        input(type='radio', name='answerOption', value=answer) <link>onchange</link>='handleUserResponse(this.value)'
+    |                       #{answer}
